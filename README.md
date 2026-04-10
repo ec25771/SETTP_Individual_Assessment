@@ -14,20 +14,6 @@ The Digital ID Platform enables a central authority to manage digital identities
 - **Audit Trail** — All key actions are logged for traceability
 - **Validation & Authorisation** — All requests validated against business rules and organisation permissions
 
-## System Structure
-
-```
-src/main/java/com/digitalid/
-├── model/          # Domain entities and value objects (DigitalId, IdentityStatus, etc.)
-├── service/        # Business logic (IdentityService, VerificationService)
-├── repository/     # Data storage layer
-├── validation/     # Input validation rules
-├── audit/          # Audit trail logging
-├── portal/         # Organisation portal interfaces and implementations
-├── exception/      # Custom exception types
-└── DigitalIdApplication.java   # Main entry point
-```
-
 ## Prerequisites
 
 - Java 17 or later
