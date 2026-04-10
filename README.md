@@ -34,4 +34,4 @@ mvn clean compile exec:java
 
 ## GitHub Repository
 
-[Repository link to be added]
+https://github.com/ec25771/SETTP_Individual_Assessment
