@@ -7,12 +7,12 @@ import com.digitalid.model.IdentityStatus;
 import com.digitalid.exception.ValidationException;
 import com.digitalid.service.IdentityService;
 
-public class EmployerPortal implements IdentityConsumer {
+public class BankPortal implements IdentityConsumer {
 
     private IdentityService identityService;
     private AuditLog auditLog;
 
-    public EmployerPortal(IdentityService identityService, AuditLog auditLog) {
+    public BankPortal(IdentityService identityService, AuditLog auditLog) {
         this.identityService = identityService;
         this.auditLog = auditLog;
     }
@@ -22,22 +22,22 @@ public class EmployerPortal implements IdentityConsumer {
 
         if (identity.getStatus() == IdentityStatus.ACTIVE) {
             auditLog.log(AuditAction.VERIFICATION_REQUESTED, identityId,
-                    "EMPLOYER", "Employment verification passed");
-            return "VALID - identity confirmed for employment";
+                    "BANK", "Bank verification passed");
+            return "VALID - identity confirmed for banking purposes";
         }
 
         auditLog.log(AuditAction.ACCESS_DENIED, identityId,
-                "EMPLOYER", "Identity not active");
+                "BANK", "Identity not active");
         return "INVALID - identity is not active";
     }
 
     public String lookupIdentity(String identityId) {
         auditLog.log(AuditAction.ACCESS_DENIED, identityId,
-                "EMPLOYER", "Unauthorised lookup attempt");
-        throw new ValidationException("Employer portal is not authorised to access identity details");
+                "BANK", "Unauthorised lookup attempt");
+        throw new ValidationException("Bank portal is not authorised to access identity details");
     }
 
     public String getOrganisationName() {
-        return "Employer";
+        return "Bank";
     }
 }

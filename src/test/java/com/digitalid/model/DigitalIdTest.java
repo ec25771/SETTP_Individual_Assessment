@@ -15,7 +15,7 @@ class DigitalIdTest {
     void setUp() {
         identity = new DigitalId(
                 "John Smith",
-                "1990-05-15",
+                "15/05/1990",
                 "AB123456C",
                 "10 Downing Street, London",
                 "john.smith@email.com",
@@ -47,7 +47,7 @@ class DigitalIdTest {
     @DisplayName("Immutable fields are set from constructor")
     void immutableFieldsSetCorrectly() {
         assertEquals("John Smith", identity.getFullName());
-        assertEquals("1990-05-15", identity.getDateOfBirth());
+        assertEquals("15/05/1990", identity.getDateOfBirth());
         assertEquals("AB123456C", identity.getNationalIdentifier());
     }
 
@@ -74,7 +74,7 @@ class DigitalIdTest {
     @DisplayName("Two identities get different ids")
     void twoIdentitiesGetDifferentIds() {
         DigitalId other = new DigitalId(
-                "Jane Doe", "1985-03-20", "CD789012E",
+                "Jane Doe", "20/03/1985", "CD789012E",
                 "5 Oxford Road", "jane@email.com", "07700900002"
         );
         assertNotEquals(identity.getId(), other.getId());

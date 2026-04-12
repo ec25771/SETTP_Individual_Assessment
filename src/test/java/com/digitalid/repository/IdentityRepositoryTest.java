@@ -37,7 +37,7 @@ class IdentityRepositoryTest {
 
     private DigitalId createTestIdentity() {
         return new DigitalId(
-                "John Smith", "1990-05-15", "AB123456C",
+                "John Smith", "15/05/1990", "AB123456C",
                 "10 Downing Street", "john@email.com", "07700900000"
         );
     }
@@ -78,7 +78,7 @@ class IdentityRepositoryTest {
     void findAllReturnsAll() {
         repository.save(createTestIdentity());
         repository.save(new DigitalId(
-                "Jane Doe", "1985-03-20", "CD789012E",
+                "Jane Doe", "20/03/1985", "CD789012E",
                 "5 Oxford Road", "jane@email.com", "07700900001"
         ));
 

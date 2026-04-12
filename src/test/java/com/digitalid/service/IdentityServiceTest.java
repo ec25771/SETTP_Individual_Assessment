@@ -49,7 +49,7 @@ class IdentityServiceTest {
 
     private DigitalId createTestIdentity() {
         return service.createIdentity(
-                "John Smith", "1990-05-15", "AB123456C",
+                "John Smith", "15/05/1990", "AB123456C",
                 "10 Downing Street", "john@email.com", "07700900000"
         );
     }
@@ -68,7 +68,7 @@ class IdentityServiceTest {
     @DisplayName("Create with blank name throws ValidationException")
     void createWithBlankNameThrows() {
         assertThrows(ValidationException.class, () -> service.createIdentity(
-                "", "1990-05-15", "AB123456C",
+                "", "15/05/1990", "AB123456C",
                 "10 Downing Street", "john@email.com", "07700900000"
         ));
     }
@@ -225,7 +225,7 @@ class IdentityServiceTest {
     void auditLogFiltersByIdentity() {
         DigitalId first = createTestIdentity();
         DigitalId second = service.createIdentity(
-                "Jane Doe", "1985-03-20", "CD789012E",
+                "Jane Doe", "20/03/1985", "CD789012E",
                 "5 Oxford Road", "jane@email.com", "07700900001"
         );
 
