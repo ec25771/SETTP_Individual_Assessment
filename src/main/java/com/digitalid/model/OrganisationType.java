@@ -5,8 +5,7 @@ public enum OrganisationType {
     TAX_AUTHORITY("Tax Authority"),
     DRIVING_LICENCE("Driving Licence Authority"),
     EMPLOYER("Employer"),
-    BANK("Bank"),
-    WELFARE("Welfare Service");
+    BANK("Bank");
 
     private final String displayName;
 
