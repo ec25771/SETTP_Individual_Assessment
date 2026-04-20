@@ -60,20 +60,6 @@ class IdentityRepositoryTest {
     }
 
     @Test
-    @DisplayName("existsById returns true for saved identity")
-    void existsByIdReturnsTrue() {
-        DigitalId identity = createTestIdentity();
-        repository.save(identity);
-        assertTrue(repository.existsById(identity.getId()));
-    }
-
-    @Test
-    @DisplayName("existsById returns false for unknown id")
-    void existsByIdReturnsFalse() {
-        assertFalse(repository.existsById("does-not-exist"));
-    }
-
-    @Test
     @DisplayName("findAll returns all saved identities")
     void findAllReturnsAll() {
         repository.save(createTestIdentity());

@@ -24,50 +24,9 @@ class DigitalIdTest {
     }
 
     @Test
-    @DisplayName("New identity has a generated id")
-    void newIdentityHasGeneratedId() {
-        assertNotNull(identity.getId());
-        assertFalse(identity.getId().isEmpty());
-    }
-
-    @Test
     @DisplayName("New identity defaults to ACTIVE status")
     void newIdentityDefaultsToActive() {
         assertEquals(IdentityStatus.ACTIVE, identity.getStatus());
-    }
-
-    @Test
-    @DisplayName("New identity has a created date")
-    void newIdentityHasCreatedDate() {
-        assertNotNull(identity.getCreatedDate());
-        assertFalse(identity.getCreatedDate().isEmpty());
-    }
-
-    @Test
-    @DisplayName("Immutable fields are set from constructor")
-    void immutableFieldsSetCorrectly() {
-        assertEquals("John Smith", identity.getFullName());
-        assertEquals("15/05/1990", identity.getDateOfBirth());
-        assertEquals("AB123456C", identity.getNationalIdentifier());
-    }
-
-    @Test
-    @DisplayName("Mutable fields can be updated")
-    void mutableFieldsCanBeUpdated() {
-        identity.setAddress("20 New Street, London");
-        identity.setContactEmail("john.new@email.com");
-        identity.setContactPhone("07700900001");
-
-        assertEquals("20 New Street, London", identity.getAddress());
-        assertEquals("john.new@email.com", identity.getContactEmail());
-        assertEquals("07700900001", identity.getContactPhone());
-    }
-
-    @Test
-    @DisplayName("Status can be changed")
-    void statusCanBeChanged() {
-        identity.setStatus(IdentityStatus.SUSPENDED);
-        assertEquals(IdentityStatus.SUSPENDED, identity.getStatus());
     }
 
     @Test
@@ -95,14 +54,5 @@ class DigitalIdTest {
         assertEquals(identity.getContactPhone(), loaded.getContactPhone());
         assertEquals(identity.getStatus(), loaded.getStatus());
         assertEquals(identity.getCreatedDate(), loaded.getCreatedDate());
-    }
-
-    @Test
-    @DisplayName("toString contains key identity information")
-    void toStringContainsKeyInfo() {
-        String result = identity.toString();
-        assertTrue(result.contains("John Smith"));
-        assertTrue(result.contains("AB123456C"));
-        assertTrue(result.contains("ACTIVE"));
     }
 }

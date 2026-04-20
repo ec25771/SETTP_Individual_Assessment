@@ -61,8 +61,6 @@ class IdentityValidatorTest {
                 && message.contains("Contact email"));
     }
 
-    // --- Full name ---
-
     @Test
     @DisplayName("Name without space is rejected")
     void nameWithoutSpaceRejected() {
@@ -71,8 +69,6 @@ class IdentityValidatorTest {
                 "10 Downing Street", "john@email.com", "07700900000"
         ));
     }
-
-    // --- Date of birth ---
 
     @Test
     @DisplayName("Valid DOB in dd/mm/yyyy format passes")
@@ -104,8 +100,6 @@ class IdentityValidatorTest {
         assertFalse(IdentityValidator.isValidDateOfBirth("ab/cd/efgh"));
     }
 
-    // --- Email ---
-
     @Test
     @DisplayName("Valid email passes")
     void validEmailPasses() {
@@ -129,8 +123,6 @@ class IdentityValidatorTest {
     void emailWithoutDotAfterAtRejected() {
         assertFalse(IdentityValidator.isValidEmail("john@emailcom"));
     }
-
-    // --- Phone ---
 
     @Test
     @DisplayName("Valid UK phone starting with 0 passes")
@@ -168,8 +160,6 @@ class IdentityValidatorTest {
         assertFalse(IdentityValidator.isValidPhone("+4477009000"));
     }
 
-    // --- Multiple format errors listed together ---
-
     @Test
     @DisplayName("Multiple format errors are all listed")
     void multipleFormatErrorsListed() {
@@ -184,8 +174,6 @@ class IdentityValidatorTest {
         assertTrue(message.contains("Contact email"));
         assertTrue(message.contains("Contact phone"));
     }
-
-    // --- Status transitions ---
 
     @Test
     @DisplayName("ACTIVE to SUSPENDED is valid")

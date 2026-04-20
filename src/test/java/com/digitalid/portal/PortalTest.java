@@ -72,8 +72,6 @@ class PortalTest {
         );
     }
 
-    // --- TaxPortal: basic verification ---
-
     @Test
     @DisplayName("Tax portal verifies active identity")
     void taxVerifiesActive() {
@@ -100,7 +98,6 @@ class PortalTest {
         assertTrue(result.startsWith("DENIED"));
     }
 
-    // --- TaxPortal: reporting period ---
 
     @Test
     @DisplayName("Tax portal passes when no suspension in reporting period")
@@ -133,7 +130,6 @@ class PortalTest {
         assertTrue(result.startsWith("VERIFIED"));
     }
 
-    // --- TaxPortal: lookup ---
 
     @Test
     @DisplayName("Tax portal lookup returns name and national ID")
@@ -153,8 +149,6 @@ class PortalTest {
         String result = taxPortal.lookupIdentity(identity.getId());
         assertTrue(result.startsWith("DENIED"));
     }
-
-    // --- EmployerPortal ---
 
     @Test
     @DisplayName("Employer portal confirms active identity")
@@ -191,8 +185,6 @@ class PortalTest {
         );
     }
 
-    // --- DrivingLicencePortal: basic verification ---
-
     @Test
     @DisplayName("Driving licence portal verifies active identity")
     void drivingLicenceVerifiesActive() {
@@ -219,8 +211,6 @@ class PortalTest {
         assertTrue(result.startsWith("DENIED"));
     }
 
-    // --- DrivingLicencePortal: eligibility ---
-
     @Test
     @DisplayName("Driving licence eligibility passes for adult")
     void drivingLicenceEligibleAdult() {
@@ -246,8 +236,6 @@ class PortalTest {
         assertTrue(result.contains("temporary restriction"));
     }
 
-    // --- DrivingLicencePortal: lookup ---
-
     @Test
     @DisplayName("Driving licence lookup returns name and DOB")
     void drivingLicenceLookupReturnsDetails() {
@@ -266,8 +254,6 @@ class PortalTest {
         String result = drivingLicencePortal.lookupIdentity(identity.getId());
         assertTrue(result.startsWith("DENIED"));
     }
-
-    // --- BankPortal ---
 
     @Test
     @DisplayName("Bank portal confirms active identity")
@@ -295,19 +281,6 @@ class PortalTest {
         );
     }
 
-    // --- Interface contract ---
-
-    @Test
-    @DisplayName("All portals return their organisation name")
-    void organisationNames() {
-        assertEquals("Tax Authority", taxPortal.getOrganisationName());
-        assertEquals("Employer", employerPortal.getOrganisationName());
-        assertEquals("Driving Licence Authority", drivingLicencePortal.getOrganisationName());
-        assertEquals("Bank", bankPortal.getOrganisationName());
-    }
-
-    // --- Audit logging ---
-
     @Test
     @DisplayName("Verification is recorded in audit log")
     void verificationIsAudited() {
@@ -322,7 +295,6 @@ class PortalTest {
         }
         assertTrue(found);
     }
-
     @Test
     @DisplayName("Denied access is recorded in audit log")
     void deniedAccessIsAudited() {

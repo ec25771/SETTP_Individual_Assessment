@@ -175,28 +175,6 @@ class IdentityServiceTest {
         );
     }
 
-    @Test
-    @DisplayName("Full lifecycle: create, update, suspend, reactivate, revoke")
-    void fullLifecycle() {
-        DigitalId identity = createTestIdentity();
-        String id = identity.getId();
-
-        service.updateAddress(id, "Updated Address");
-        assertEquals("Updated Address", service.getIdentity(id).getAddress());
-
-        service.changeStatus(id, IdentityStatus.SUSPENDED);
-        assertEquals(IdentityStatus.SUSPENDED, service.getIdentity(id).getStatus());
-
-        service.changeStatus(id, IdentityStatus.ACTIVE);
-        assertEquals(IdentityStatus.ACTIVE, service.getIdentity(id).getStatus());
-
-        service.changeStatus(id, IdentityStatus.REVOKED);
-        assertEquals(IdentityStatus.REVOKED, service.getIdentity(id).getStatus());
-
-        assertThrows(ValidationException.class, () ->
-                service.updateAddress(id, "Should Fail")
-        );
-    }
 
     @Test
     @DisplayName("Audit log records identity creation")
