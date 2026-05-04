@@ -37,7 +37,65 @@ public class DigitalIdApplication {
 
         boolean running = true;
         while (running) {
-            printMenu();
+            printLoginMenu();
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    centralAuthorityMenu();
+                    break;
+                case "2":
+                    taxAuthorityMenu();
+                    break;
+                case "3":
+                    drivingLicenceMenu();
+                    break;
+                case "4":
+                    employerMenu();
+                    break;
+                case "5":
+                    bankMenu();
+                    break;
+                case "0":
+                    running = false;
+                    System.out.println("Goodbye.");
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static void printLoginMenu() {
+        System.out.println();
+        System.out.println("--- Select Organisation ---");
+        System.out.println("1. Central Authority");
+        System.out.println("2. Tax Authority");
+        System.out.println("3. Driving Licence Authority");
+        System.out.println("4. Employer");
+        System.out.println("5. Bank");
+        System.out.println("0. Exit");
+        System.out.print("Log in as: ");
+    }
+
+    private static void centralAuthorityMenu() {
+        System.out.println("\n[Logged in as Central Authority]");
+        boolean active = true;
+        while (active) {
+            System.out.println();
+            System.out.println("--- Central Authority ---");
+            System.out.println("1. Create Identity");
+            System.out.println("2. View Identity");
+            System.out.println("3. List All Identities");
+            System.out.println("4. Update Address");
+            System.out.println("5. Update Contact Email");
+            System.out.println("6. Update Contact Phone");
+            System.out.println("7. Change Status");
+            System.out.println("8. View Audit Log");
+            System.out.println("0. Log out");
+            System.out.print("Choose an option: ");
             String choice = scanner.nextLine().trim();
 
             switch (choice) {
@@ -63,41 +121,140 @@ public class DigitalIdApplication {
                     changeStatus();
                     break;
                 case "8":
-                    verifyViaPortal();
-                    break;
-                case "9":
-                    lookupViaPortal();
-                    break;
-                case "10":
                     viewAuditLog();
                     break;
                 case "0":
-                    running = false;
-                    System.out.println("Goodbye.");
+                    active = false;
+                    System.out.println("Logged out.");
                     break;
                 default:
                     System.out.println("Invalid option. Please try again.");
             }
         }
-
-        scanner.close();
     }
 
-    private static void printMenu() {
-        System.out.println();
-        System.out.println("--- Main Menu ---");
-        System.out.println("1.  Create Identity");
-        System.out.println("2.  View Identity");
-        System.out.println("3.  List All Identities");
-        System.out.println("4.  Update Address");
-        System.out.println("5.  Update Contact Email");
-        System.out.println("6.  Update Contact Phone");
-        System.out.println("7.  Change Status");
-        System.out.println("8.  Verify Identity (Portal)");
-        System.out.println("9.  Lookup Identity (Portal)");
-        System.out.println("10. View Audit Log");
-        System.out.println("0.  Exit");
-        System.out.print("Choose an option: ");
+    private static void taxAuthorityMenu() {
+        System.out.println("\n[Logged in as Tax Authority]");
+        boolean active = true;
+        while (active) {
+            System.out.println();
+            System.out.println("--- Tax Authority ---");
+            System.out.println("1. Verify Identity");
+            System.out.println("2. Verify for Tax Period");
+            System.out.println("3. Lookup Identity");
+            System.out.println("0. Log out");
+            System.out.print("Choose an option: ");
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    verifyViaTax();
+                    break;
+                case "2":
+                    verifyForTaxPeriod();
+                    break;
+                case "3":
+                    lookupViaTax();
+                    break;
+                case "0":
+                    active = false;
+                    System.out.println("Logged out.");
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
+    }
+
+    private static void drivingLicenceMenu() {
+        System.out.println("\n[Logged in as Driving Licence Authority]");
+        boolean active = true;
+        while (active) {
+            System.out.println();
+            System.out.println("--- Driving Licence Authority ---");
+            System.out.println("1. Verify Identity");
+            System.out.println("2. Check Eligibility");
+            System.out.println("3. Lookup Identity");
+            System.out.println("0. Log out");
+            System.out.print("Choose an option: ");
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    verifyViaDrivingLicence();
+                    break;
+                case "2":
+                    checkDrivingEligibility();
+                    break;
+                case "3":
+                    lookupViaDrivingLicence();
+                    break;
+                case "0":
+                    active = false;
+                    System.out.println("Logged out.");
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
+    }
+
+    private static void employerMenu() {
+        System.out.println("\n[Logged in as Employer]");
+        boolean active = true;
+        while (active) {
+            System.out.println();
+            System.out.println("--- Employer ---");
+            System.out.println("1. Verify Identity");
+            System.out.println("2. Lookup Identity");
+            System.out.println("0. Log out");
+            System.out.print("Choose an option: ");
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    verifyViaEmployer();
+                    break;
+                case "2":
+                    lookupViaEmployer();
+                    break;
+                case "0":
+                    active = false;
+                    System.out.println("Logged out.");
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
+    }
+
+    private static void bankMenu() {
+        System.out.println("\n[Logged in as Bank]");
+        boolean active = true;
+        while (active) {
+            System.out.println();
+            System.out.println("--- Bank ---");
+            System.out.println("1. Verify Identity");
+            System.out.println("2. Lookup Identity");
+            System.out.println("0. Log out");
+            System.out.print("Choose an option: ");
+            String choice = scanner.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    verifyViaBank();
+                    break;
+                case "2":
+                    lookupViaBank();
+                    break;
+                case "0":
+                    active = false;
+                    System.out.println("Logged out.");
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
     }
 
     private static void createIdentity() {
@@ -220,88 +377,6 @@ public class DigitalIdApplication {
         }
     }
 
-    private static void verifyViaPortal() {
-        System.out.print("Enter identity ID: ");
-        String id = scanner.nextLine().trim();
-        System.out.println("1. Tax Authority - Basic Verification");
-        System.out.println("2. Tax Authority - Tax Period Verification");
-        System.out.println("3. Employer");
-        System.out.println("4. Driving Licence Authority - Basic Verification");
-        System.out.println("5. Driving Licence Authority - Eligibility Check");
-        System.out.println("6. Bank");
-        System.out.print("Choose portal: ");
-        String choice = scanner.nextLine().trim();
-
-        try {
-            String result;
-            switch (choice) {
-                case "1":
-                    result = taxPortal.verifyIdentity(id);
-                    break;
-                case "2":
-                    System.out.print("Period start (dd/mm/yyyy): ");
-                    String start = scanner.nextLine().trim();
-                    System.out.print("Period end (dd/mm/yyyy): ");
-                    String end = scanner.nextLine().trim();
-                    result = taxPortal.verifyForTaxPeriod(id, start, end);
-                    break;
-                case "3":
-                    result = employerPortal.verifyIdentity(id);
-                    break;
-                case "4":
-                    result = drivingLicencePortal.verifyIdentity(id);
-                    break;
-                case "5":
-                    result = drivingLicencePortal.checkEligibility(id);
-                    break;
-                case "6":
-                    result = bankPortal.verifyIdentity(id);
-                    break;
-                default:
-                    System.out.println("Invalid portal.");
-                    return;
-            }
-            System.out.println("Result: " + result);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-
-    private static void lookupViaPortal() {
-        System.out.print("Enter identity ID: ");
-        String id = scanner.nextLine().trim();
-        System.out.println("1. Tax Authority");
-        System.out.println("2. Employer");
-        System.out.println("3. Driving Licence Authority");
-        System.out.println("4. Bank");
-        System.out.print("Choose portal: ");
-        String choice = scanner.nextLine().trim();
-
-        try {
-            String result;
-            switch (choice) {
-                case "1":
-                    result = taxPortal.lookupIdentity(id);
-                    break;
-                case "2":
-                    result = employerPortal.lookupIdentity(id);
-                    break;
-                case "3":
-                    result = drivingLicencePortal.lookupIdentity(id);
-                    break;
-                case "4":
-                    result = bankPortal.lookupIdentity(id);
-                    break;
-                default:
-                    System.out.println("Invalid portal.");
-                    return;
-            }
-            System.out.println("Result: " + result);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-
     private static void viewAuditLog() {
         System.out.println("1. View all entries");
         System.out.println("2. View entries for an identity");
@@ -323,6 +398,110 @@ public class DigitalIdApplication {
         }
         for (String entry : entries) {
             System.out.println(entry);
+        }
+    }
+
+    private static void verifyViaTax() {
+        System.out.print("Enter identity ID: ");
+        String id = scanner.nextLine().trim();
+        try {
+            System.out.println("Result: " + taxPortal.verifyIdentity(id));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void verifyForTaxPeriod() {
+        System.out.print("Enter identity ID: ");
+        String id = scanner.nextLine().trim();
+        System.out.print("Period start (dd/mm/yyyy): ");
+        String start = scanner.nextLine().trim();
+        System.out.print("Period end (dd/mm/yyyy): ");
+        String end = scanner.nextLine().trim();
+        try {
+            System.out.println("Result: " + taxPortal.verifyForTaxPeriod(id, start, end));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void lookupViaTax() {
+        System.out.print("Enter identity ID: ");
+        String id = scanner.nextLine().trim();
+        try {
+            System.out.println("Result: " + taxPortal.lookupIdentity(id));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void verifyViaDrivingLicence() {
+        System.out.print("Enter identity ID: ");
+        String id = scanner.nextLine().trim();
+        try {
+            System.out.println("Result: " + drivingLicencePortal.verifyIdentity(id));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void checkDrivingEligibility() {
+        System.out.print("Enter identity ID: ");
+        String id = scanner.nextLine().trim();
+        try {
+            System.out.println("Result: " + drivingLicencePortal.checkEligibility(id));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void lookupViaDrivingLicence() {
+        System.out.print("Enter identity ID: ");
+        String id = scanner.nextLine().trim();
+        try {
+            System.out.println("Result: " + drivingLicencePortal.lookupIdentity(id));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void verifyViaEmployer() {
+        System.out.print("Enter identity ID: ");
+        String id = scanner.nextLine().trim();
+        try {
+            System.out.println("Result: " + employerPortal.verifyIdentity(id));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void lookupViaEmployer() {
+        System.out.print("Enter identity ID: ");
+        String id = scanner.nextLine().trim();
+        try {
+            System.out.println("Result: " + employerPortal.lookupIdentity(id));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void verifyViaBank() {
+        System.out.print("Enter identity ID: ");
+        String id = scanner.nextLine().trim();
+        try {
+            System.out.println("Result: " + bankPortal.verifyIdentity(id));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void lookupViaBank() {
+        System.out.print("Enter identity ID: ");
+        String id = scanner.nextLine().trim();
+        try {
+            System.out.println("Result: " + bankPortal.lookupIdentity(id));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
