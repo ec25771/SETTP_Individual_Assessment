@@ -35,23 +35,19 @@ public class IdentityValidator {
             }
         }
 
-        if (!errors.isEmpty()) {
-            throw new ValidationException(String.join(", ", errors));
-        }
-
-        if (!fullName.contains(" ")) {
+        if (fullName != null && !fullName.trim().isEmpty() && !fullName.contains(" ")) {
             errors.add("Full name must contain at least a first and last name");
         }
 
-        if (!isValidDateOfBirth(dateOfBirth)) {
+        if (dateOfBirth != null && !dateOfBirth.trim().isEmpty() && !isValidDateOfBirth(dateOfBirth)) {
             errors.add("Date of birth must be in dd/mm/yyyy format");
         }
 
-        if (!isValidEmail(contactEmail)) {
+        if (contactEmail != null && !contactEmail.trim().isEmpty() && !isValidEmail(contactEmail)) {
             errors.add("Contact email must contain exactly one @ and at least one . after the @");
         }
 
-        if (!isValidPhone(contactPhone)) {
+        if (contactPhone != null && !contactPhone.trim().isEmpty() && !isValidPhone(contactPhone)) {
             errors.add("Contact phone must be 11 digits starting with 0, or +44 followed by 10 digits");
         }
 
